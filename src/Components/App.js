@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router";
 import SearchField from "./Search/SearchField";
 import CardList from "./Card/CardList";
 import Blog from "./Blog";
@@ -16,7 +16,6 @@ class App extends Component {
     filter: '',
   };
 
-  //Public class field:  https://youtu.be/cUPZFk_wbks?t=1655
   handleFilter = event => {
     this.setState({
       filter: event.target.value,
