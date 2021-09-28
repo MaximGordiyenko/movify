@@ -1,15 +1,24 @@
-import React from 'react';
-import style from './Card.module.css'
+import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 
-const Card = ({title, image, description, genre}) => (
-  <div className={style.wrapper}>
-    <h2 className={style.header}>{title}</h2>
-    <img className={style.image}
-         src={image}
-         alt='some text'
-    />
-    <p className={style.desc}>{description}</p>
-    <p className={style.genre}>{genre}</p>
-  </div>
-);
-export default Card;
+export const ActionAreaCard = ({movie}) => {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          image={movie.i.imageUrl}
+          alt={movie.l}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {movie.l}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+}

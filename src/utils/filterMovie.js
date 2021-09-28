@@ -1,3 +1,3 @@
-import movies from "../Components/movies";
+// import data from "../Components/data"
 
-export const filterMovieName = (item) => movies.filter(movies => movies.title.toLocaleLowerCase().includes(item.toLowerCase()));
+// export const filterMovieName = (item) => data.filter(movies => movies.title.toLocaleLowerCase().includes(item.toLowerCase()));

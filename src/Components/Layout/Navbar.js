@@ -1,34 +1,27 @@
-import React, {Component} from 'react';
 import style from './Navbar.module.css';
 import Logo from "../Logo/Logo";
-import {NavLink} from "react-router-dom";
+import { Link } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import { logoUrl } from "../../constants";
 
-export class Navbar extends Component {
-  render() {
-    const pages = ['Blog', 'Dashboard'];
-    const navLinks = pages.map(page => {
-      return (
-        <NavLink className={style.link}
-                 to={page} //"{page}" - this is each element of array's pages and "Link to=" it's link to the component
-                 key={page}
-                 href={'/' + page}>
-          {page}
-        </NavLink>
-      );
-    });
-    
-    return (
-      <nav className={style.navbar}>
-        <Logo logoUrl="/"
-              logoImg="https://www.freepnglogos.com/uploads/f-logo-orange-png-19.png"/>
-        {
-          navLinks
-        }
-          <SignedInLinks/>
-          <SignedOutLinks/>
-      </nav>
-    );
-  }
-}
+export const Navbar = () => {
+  return (
+    <nav className={style.navbar}>
+      <Logo logoUrl="/" logoImg={logoUrl}/>
+      <ul>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
+        <li>
+          <Link to="/movies">Movies</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      </ul>
+      <SignedInLinks/>
+      <SignedOutLinks/>
+    </nav>
+  );
+};

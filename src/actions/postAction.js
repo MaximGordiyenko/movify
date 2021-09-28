@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import {ADD_POST, DELETE_POST} from "./types";
 
 const createPost = ({title, body}) => ({

@@ -1,51 +1,38 @@
-import React, {Component} from 'react';
-import {Route, Switch} from "react-router-dom";
+import { useState } from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SearchField from "./Search/SearchField";
-import CardList from "./Card/CardList";
 import Blog from "./Blog";
-import {filterMovieName} from "../utils/filterMovie";
-import {Navbar} from "./Layout/Navbar";
+import { Navbar } from "./Layout/Navbar";
 import Dashboard from "./Dashboard/Dashboard";
 import ProjectDetails from "./Projects/ProjectDetails";
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
 import CreateProject from "./Projects/CreateProject";
+import { Movies } from "./Movies";
+import { Movie } from "./Movie";
 
-class App extends Component {
-  state = {
-    filter: '',
-  };
-
-  //Public class field:  https://youtu.be/cUPZFk_wbks?t=1655
-  handleFilter = event => {
-    this.setState({
-      filter: event.target.value,
-    });
+export const App = () => {
+  const [filter, setFilter] = useState('');
+  
+  const handleFilter = event => {
+    setFilter(event.target.value);
   };
   
-  render() {
-    const {filter} = this.state;
-    const filterMovies = filterMovieName(filter);
-    return (
-      <>
-        <Navbar/>
-        <SearchField filterProp={filter}
-                     onChangeFilterProp={this.handleFilter}
-        />
-        <Switch>
-          <Route exact path='/' render={() => <CardList moviesProp={filterMovies}/>}/>
-          {/*<Route path='/:id' component={Movie}/>*/}
-          <Route path='/blog' component={Blog}/>
-          <Route exact path='/dashboard' component={Dashboard}/>
-          <Route path='/project/:id' component={ProjectDetails}/>
-          <Route path='/signin' component={SignIn}/>
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/create' component={CreateProject}/>
-        </Switch>
-      </>
-    );
-  }
-}
-
-
-export default (App);
+  // const filterMovies = filterMovieName(filter);
+  return (
+    <BrowserRouter>
+      <Navbar/>
+      <SearchField filterProp={filter} onChangeFilterProp={handleFilter}/>
+      <Switch>
+        <Route path="/blog" component={Blog}/>
+        <Route path="/movies" component={Movies}/>
+        <Route path="/movie/:id" component={Movie}/>
+        <Route exact path="/dashboard" component={Dashboard}/>
+        <Route path="/project/:id" component={ProjectDetails}/>
+        <Route path="/signin" component={SignIn}/>
+        <Route path="/signup" component={SignUp}/>
+        <Route path="/create" component={CreateProject}/>
+      </Switch>
+    </BrowserRouter>
+  );
+};
