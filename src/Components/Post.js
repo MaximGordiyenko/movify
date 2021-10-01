@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPost, deletePost} from '../actions/postAction';
+import {createPost, deletePost} from '../redux/actions/posts/postAction';
 import Button from "./Button";
 
 class Post extends Component {

@@ -1,20 +1,32 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-// import data from './data.json';
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const Movie = () => {
-  const [movie] = useState('Default Title')
-  // const {id} = useParams();
-  //
-  // useEffect(() => {
-  // const getMovie = data.find(movie => movie.id === parseInt(id));
-  // setMovie(getMovie.title);
-  // }, [id]);
+  const [movie, setMovie] = useState([]);
+  const { id } = useParams();
+  const gameOfThronesData = useSelector(state => state.gameOfThronesReducer.gameOfThronesData);
   
+  useEffect(() => {
+    const getMovie = gameOfThronesData.find(movie => movie.id === id);
+    setMovie(getMovie);
+  }, [id]);
+  console.log(movie);
   return (
     <>
-      <h2>{movie}</h2>
-      <Link to='/movies'>Back to list of movies</Link>
+      {movie &&
+      <>
+        <Link to="/movies">Movies</Link>
+        <h1>{movie.l}</h1>
+        <p>Type: {movie.q}</p>
+        {movie.v &&
+        <>
+          <img src={movie.v[0].i.imageUrl} width={600} alt=""/>
+          <p>Rank: {movie.rank}</p>
+        </>
+        }
+      </>
+      }
     </>
   );
 };

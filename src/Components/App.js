@@ -26,7 +26,7 @@ export const App = () => {
       <Switch>
         <Route path="/blog" component={Blog}/>
         <Route path="/movies" component={Movies}/>
-        <Route path="/movie/:id" component={Movie}/>
+        <Route path="/movie/:id" children={<Movie/>}/>
         <Route exact path="/dashboard" component={Dashboard}/>
         <Route path="/project/:id" component={ProjectDetails}/>
         <Route path="/signin" component={SignIn}/>
