@@ -10,8 +10,8 @@ export const Movie = () => {
   useEffect(() => {
     const getMovie = gameOfThronesData.find(movie => movie.id === id);
     setMovie(getMovie);
-  }, [id]);
-  console.log(movie);
+  }, [id, gameOfThronesData]);
+
   return (
     <>
       {movie &&

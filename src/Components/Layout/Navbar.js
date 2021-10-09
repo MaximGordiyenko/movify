@@ -11,10 +11,10 @@ export const Navbar = () => {
       <Logo logoUrl="/" logoImg={logoUrl}/>
       <ul>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to="/movies">Movies</Link>
         </li>
         <li>
-          <Link to="/movies">Movies</Link>
+          <Link to="/create">Create Note</Link>
         </li>
         <li>
           <Link to="/dashboard">Dashboard</Link>

@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { gameOfThrones } from "../redux/actions/movies/movies.action";
 
 export const Movies = () => {
-  const gameOfThronesData = useSelector(state => state.gameOfThronesReducer.gameOfThronesData);
   const dispatch = useDispatch();
-
+  const gameOfThronesData = useSelector(state => state.gameOfThronesReducer.gameOfThronesData);
+  
   useEffect(() => {
     dispatch(gameOfThrones());
   }, [dispatch]);
