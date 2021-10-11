@@ -14,10 +14,7 @@ export const Navbar = () => {
           <Link to="/movies">Movies</Link>
         </li>
         <li>
-          <Link to="/create">Create Note</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/create">Notes</Link>
         </li>
       </ul>
       <SignedInLinks/>

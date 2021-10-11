@@ -1,5 +1,4 @@
 import {
-  Button,
   Container,
   FormControl,
   FormControlLabel,
@@ -9,19 +8,19 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useStyle } from "./Create.style";
+import { useStyle } from "./CreateNotes.style";
 import { useState } from "react";
 import { Notes } from "./Notes";
 import { useDispatch, useSelector } from "react-redux";
-import { createNote } from "../redux/actions/notes/notes.action";
+import { createNote } from "../../redux/actions/notes/notes.action";
+import { GlowButton } from "../../Components/GlowButton";
 
-export const CreateNote = () => {
+export const CreateNotes = () => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
   const [category, setCategory] = useState('todos');
   
-  const notes = useSelector(state => state.notesReducer)
+  const notes = useSelector(state => state.notesReducer);
   const dispatch = useDispatch();
   
   const classes = useStyle();
@@ -29,13 +28,13 @@ export const CreateNote = () => {
   const submit = e => {
     e.preventDefault();
     if (title && details) {
-      dispatch(createNote({ title, details, category }))
+      dispatch(createNote({ title, details, category }));
     }
   };
   
   return (
-    <Container>
-      <Typography variant="h4" color="textSecondary" gutterBottom>
+    <Container maxWidth="xl" className={classes.container}>
+      <Typography variant="h4" color="textSecondary" gutterBottom className={classes.text}>
         Create new Notes
       </Typography>
       
@@ -57,7 +56,7 @@ export const CreateNote = () => {
           className={classes.field}
           label="Details"
           variant="outlined"
-          color="secondary"
+          color="primary"
           fullWidth
           required
           multiline
@@ -66,26 +65,20 @@ export const CreateNote = () => {
         />
         
         <FormControl className={classes.field}>
-          <FormLabel component='h3'>Note Category</FormLabel>
+          <FormLabel component="h3" className={classes.text}>Note Category</FormLabel>
           <RadioGroup value={category} onChange={e => setCategory(e.target.value)}>
-            <FormControlLabel value="money" control={<Radio/>} label="Money"/>
-            <FormControlLabel value="todos" control={<Radio/>} label="Todos"/>
-            <FormControlLabel value="reminders" control={<Radio/>} label="Reminders"/>
-            <FormControlLabel value="work" control={<Radio/>} label="Work"/>
+            <FormControlLabel className={classes.text} value="money" control={<Radio/>} label="Money"/>
+            <FormControlLabel className={classes.text} value="todos" control={<Radio/>} label="Todos"/>
+            <FormControlLabel className={classes.text} value="reminders" control={<Radio/>} label="Reminders"/>
+            <FormControlLabel className={classes.text} value="work" control={<Radio/>} label="Work"/>
           </RadioGroup>
         </FormControl>
         
-        <Button
+        <GlowButton
           type="submit"
-          className={classes.btn}
-          variant="contained"
-          color="secondary"
-          endIcon={<KeyboardArrowRightIcon/>}
-        >
-          Click
-        </Button>
+          text="Submit"/>
       </form>
-    <Notes notes={notes}/>
+      <Notes notes={notes}/>
     </Container>
   );
 };

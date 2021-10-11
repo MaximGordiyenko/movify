@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import {colors} from "../variables";
 
-const Button = styled.button.attrs({
+const ButtonStyled = styled.button.attrs({
   className: 'button'
 })`
   background: ${props => props.primary ? colors.primaryBackground : colors.primaryColor};
@@ -18,4 +18,4 @@ const Button = styled.button.attrs({
     }
 `;
 
-export default Button;
+export default ButtonStyled;
