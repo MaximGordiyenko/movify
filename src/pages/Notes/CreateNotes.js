@@ -20,7 +20,7 @@ export const CreateNotes = () => {
   const [details, setDetails] = useState('');
   const [category, setCategory] = useState('todos');
   
-  const notes = useSelector(state => state.notesReducer);
+  const notes = useSelector(state => state.notes);
   const dispatch = useDispatch();
   
   const classes = useStyle();

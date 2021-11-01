@@ -15,7 +15,7 @@ const initialState = [
   },
 ];
 
-export const notesReducer = (state = initialState, { type, id, title, details, category }) => {
+export const notes = (state = initialState, { type, id, title, details, category }) => {
   switch (type) {
     case CREATE_NOTE:
       return [

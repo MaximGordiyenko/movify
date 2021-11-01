@@ -16,6 +16,9 @@ export const Navbar = () => {
         <li>
           <Link to="/create">Notes</Link>
         </li>
+        <li>
+          <Link to="/crypto">Binance</Link>
+        </li>
       </ul>
       <SignedInLinks/>
       <SignedOutLinks/>

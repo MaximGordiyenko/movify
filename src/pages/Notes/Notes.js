@@ -13,7 +13,7 @@ export const Notes = ({ notes }) => {
             {note.title}
             <Typography variant="caption" color='primary'>{note.category}</Typography>
           </h2>
-          <Typography variant='string' className={classes.text}>{note.details}</Typography>
+          <Typography variant='body1' className={classes.text}>{note.details}</Typography>
           <GlowButton type='button' text='delete'/>
         </List>
       )}

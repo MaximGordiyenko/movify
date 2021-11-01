@@ -1,10 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import logger from "./middleware/logger";
-import { gameOfThronesReducer } from "./reducers/movies/movies.reducer";
-import { notesReducer } from "./reducers/notes/notes.reducer";
+import { gameOfThrones } from "./reducers/movies/movies.reducer";
+import { notes } from "./reducers/notes/notes.reducer";
 import { loadState, saveState } from "./localStorage";
 import throttle from 'lodash.throttle';
+import { multiCryptos } from "./reducers/crypto/crypto.reducer";
 
 const middlewareEnhancer = applyMiddleware(thunk, logger);
 const composedEnhancers = compose(middlewareEnhancer);
@@ -12,8 +13,9 @@ const persistedState = loadState();
 
 export const store = createStore(
   combineReducers({
-    gameOfThronesReducer,
-    notesReducer
+    gameOfThrones,
+    notes,
+    multiCryptos,
   }),
   persistedState,
   composedEnhancers
@@ -22,7 +24,7 @@ export const store = createStore(
 // https://medium.com/@jrcreencia/persisting-redux-state-to-local-storage-f81eb0b90e7e
 store.subscribe(throttle(() => {
   saveState({
-    notesReducer: store.getState().notesReducer
+    notes: store.getState().notes
   });
 }, 1000));
 

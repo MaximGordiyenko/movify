@@ -18,7 +18,7 @@ export const gameOfThrones = () => dispatch => {
     params: { q: 'game of thr' },
     headers: {
       'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-      'x-rapidapi-key': 'b4aeee3b75msh751306c9d9aaf5cp181842jsne875bf5aecea'
+      'x-rapidapi-key': process.env.REACT_APP_RAPID_API
     }
   };
   

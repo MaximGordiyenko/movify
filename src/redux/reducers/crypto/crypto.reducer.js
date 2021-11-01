@@ -1,17 +1,17 @@
 import { GET_FAILURE, GET_SUCCESS } from "../../actions/types";
 
 const initialState = {
-  gameOfThronesData: [],
+  arrayCryptos: [],
   loading: true,
   error: null,
 };
 
-export const gameOfThrones = (state = initialState, { type, payload }) => {
+export const multiCryptos = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_SUCCESS:
       return {
         ...state,
-        gameOfThronesData: payload,
+        arrayCryptos: payload,
         loading: false,
         error: null,
       };
@@ -24,4 +24,4 @@ export const gameOfThrones = (state = initialState, { type, payload }) => {
     default:
       return state;
   }
-};
+}

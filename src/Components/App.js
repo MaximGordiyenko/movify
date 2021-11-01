@@ -6,6 +6,7 @@ import { Movies } from "../pages/Movies/Movies";
 import { Movie } from "../pages/Movies/Movie";
 import { CreateNotes } from "../pages/Notes/CreateNotes";
 import { Home } from "./Home";
+import { AllCryptos } from '../pages/Cryptos/AllCryptos'
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
         <Route exact path="/movies" component={Movies}/>
         <Route exact path="/movie/:id" children={<Movie/>}/>
         <Route exact path="/create" component={CreateNotes}/>
+        <Route exact path="/crypto" component={AllCryptos}/>
         <Route path="/signin" component={SignIn}/>
         <Route path="/signup" component={SignUp}/>
       </Switch>
