@@ -19,7 +19,7 @@ export const Movies = () => {
     <>
       {GOTDataLoading && <div className={classes.loading}>Loading...</div>}
       <div className={classes.container}>
-        {GOTData.map(movie =>
+        {GOTData?.map(movie =>
           <div key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
               <ActionAreaCard movie={movie}/>
