@@ -14,6 +14,6 @@ export const getFailure = error => ({
 
 export const multiCurrencies = () => dispatch => {
   return axios.get(`${process.env.REACT_APP_SERVER_API}/cryptos`)
-    .then(res => dispatch(getSuccess(res.data)))
+    .then(res => dispatch(getSuccess(res)))
     .catch(error => dispatch(getFailure(error)))
 }
