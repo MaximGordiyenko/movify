@@ -5,27 +5,28 @@ import { useSelector } from "react-redux";
 export const Movie = () => {
   const [movie, setMovie] = useState([]);
   const { id } = useParams();
-  const gameOfThronesData = useSelector(state => state.gameOfThronesReducer.gameOfThronesData);
+  const gameOfThronesData = useSelector(state => state?.gameOfThronesReducer?.gameOfThronesData);
   
   useEffect(() => {
-    const getMovie = gameOfThronesData.find(movie => movie.id === id);
+    const getMovie = gameOfThronesData?.find(movie => movie?.id === id);
     setMovie(getMovie);
   }, [id, gameOfThronesData]);
-
+  
   return (
     <>
-      {movie &&
-      <>
-        <Link to="/movies">Movies</Link>
-        <h1>{movie.l}</h1>
-        <p>Type: {movie.q}</p>
-        {movie.v &&
+      {
+        movie &&
         <>
-          <img src={movie.v[0].i.imageUrl} width={600} alt=""/>
-          <p>Rank: {movie.rank}</p>
+          <Link to="/movies">Movies</Link>
+          <h1>{movie.l}</h1>
+          <p>Type: {movie.q}</p>
+          {movie.v &&
+            <>
+              <img src={movie.v[0].i.imageUrl} width={600} alt=""/>
+              <p>Rank: {movie.rank}</p>
+            </>
+          }
         </>
-        }
-      </>
       }
     </>
   );

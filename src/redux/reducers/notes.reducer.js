@@ -1,4 +1,4 @@
-import { CREATE_NOTE, DELETE_NOTE } from "../../actions/types";
+import { CREATE_NOTE, DELETE_NOTE } from "../actions/types";
 
 const initialState = [
   {

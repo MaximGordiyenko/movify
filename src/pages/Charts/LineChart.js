@@ -1,4 +1,3 @@
-import moment from "moment";
 import styled from "styled-components";
 import { format } from "date-fns";
 import { AnimatedAxis, AnimatedGrid, AnimatedLineSeries, Tooltip, XYChart } from "@visx/xychart";

@@ -1,11 +1,14 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import logger from "./middleware/logger";
-import { gameOfThrones } from "./reducers/movies/movies.reducer";
-import { notes } from "./reducers/notes/notes.reducer";
+import { gameOfThrones } from "./reducers/movies.reducer";
+import { notes } from "./reducers/notes.reducer";
 import { loadState, saveState } from "./localStorage";
 import throttle from 'lodash.throttle';
-import { multiCryptos } from "./reducers/crypto/crypto.reducer";
+import { multiCryptos } from "./reducers/crypto.reducer";
+import { alert } from './reducers/alert.reducer'
+import { users } from "./reducers/users.reducer";
+import { authentication } from "./reducers/authentication.reducer";
 
 const middlewareEnhancer = applyMiddleware(thunk, logger);
 const composedEnhancers = compose(middlewareEnhancer);
@@ -16,11 +19,15 @@ export const store = createStore(
     gameOfThrones,
     notes,
     multiCryptos,
+    alert,
+    users,
+    authentication,
   }),
   persistedState,
   composedEnhancers
 );
 
+// https://blog.bitsrc.io/5-methods-to-persisting-state-between-page-reloads-in-react-8fc9abd3fa2f
 // https://medium.com/@jrcreencia/persisting-redux-state-to-local-storage-f81eb0b90e7e
 store.subscribe(throttle(() => {
   saveState({

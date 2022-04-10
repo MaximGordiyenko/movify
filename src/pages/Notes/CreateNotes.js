@@ -12,8 +12,8 @@ import { useStyle } from "./CreateNotes.style";
 import { useState } from "react";
 import { Notes } from "./Notes";
 import { useDispatch, useSelector } from "react-redux";
-import { createNote } from "../../redux/actions/notes/notes.action";
-import { GlowButton } from "../../Components/GlowButton";
+import { createNote } from "../../redux/actions/notes.action";
+import { GlowButton } from "../../components/GlowButton/GlowButton";
 
 export const CreateNotes = () => {
   const [title, setTitle] = useState('');

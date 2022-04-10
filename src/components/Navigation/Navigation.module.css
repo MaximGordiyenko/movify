@@ -1,0 +1,15 @@
+.activeLink {
+  color: rgb(123, 233, 233);
+  
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: black;
+}
+
+.link {
+  text-decoration: none;
+}

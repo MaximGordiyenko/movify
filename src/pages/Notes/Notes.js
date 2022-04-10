@@ -1,5 +1,5 @@
 import { Container, List, Typography } from "@material-ui/core";
-import { GlowButton } from "../../Components/GlowButton";
+import { GlowButton } from "../../components/GlowButton/GlowButton";
 import { useStyle } from "./CreateNotes.style";
 import { CoinsExchange } from "../../CoinsExchange";
 

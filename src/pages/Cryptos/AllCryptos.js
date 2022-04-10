@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { multiCurrencies } from "../../redux/actions/crypto/crypto.action";
+import { multiCurrencies } from "../../redux/actions/crypto.action";
 import { LineChart } from "../Charts/LineChart";
 import moment from "moment";
 

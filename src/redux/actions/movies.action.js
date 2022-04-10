@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_FAILURE, GET_SUCCESS } from "../types";
+import { GET_FAILURE, GET_SUCCESS } from "./types";
 
 export const getSuccess = api => ({
   type: GET_SUCCESS,

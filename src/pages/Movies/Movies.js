@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { ActionAreaCard } from "../../Components/Card/Card";
+import { ActionAreaCard } from "../../components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { gameOfThrones } from "../../redux/actions/movies/movies.action";
+import { gameOfThrones } from "../../redux/actions/movies.action";
 import { useStyle } from './Movies.style';
 
 export const Movies = () => {
