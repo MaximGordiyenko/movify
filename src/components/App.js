@@ -12,20 +12,15 @@ import { useSelector } from "react-redux";
 export const App = () => {
   
   const { user } = useSelector(state => state?.authentication);
-  
+
   return (
     <>
-      <Navigation/>
-      {/*{user ? (*/}
-      {/*  <button onClick={handleLogout}>Sign Out</button>*/}
-      {/*) : (*/}
-      {/*  <button onClick={handleLogin}>Sign In</button>*/}
-      {/*)}*/}
-      
+      <Navigation isAllowed={!!user?.username}/>
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
         <Route element={<ProtectedRoute isAllowed={!!user?.username}/>}>
-          <Route path="/movies" element={<Movies/>}/>
+          <Route path="/crypto" element={<AllCryptos/>}/>
+          
         </Route>
         
         <Route
@@ -40,8 +35,8 @@ export const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/movies" element={<Movies/>}/>
         <Route path="/movie/:id" element={<Movie/>}/>
-        <Route path="/crypto" element={<AllCryptos/>}/>
         <Route path="*" element={<p>There's nothing here: 404!</p>}/>
       </Routes>
     </>

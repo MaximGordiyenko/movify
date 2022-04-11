@@ -64,7 +64,7 @@ export const LoginPage = () => {
           }
         </div>
         <div className="form-group">
-          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+          <button className="btn btn-primary mr-3" onClick={handleLogin}>Login</button>
           <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
         </div>
       </form>
