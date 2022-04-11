@@ -1,20 +1,48 @@
 ## Available Scripts
 
 In the project directory, you can run:
-
-### `npm client`
+> npm run client
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `npm server`
+> npm run server
 
 Runs the sever in the development mode.<br />
 Pass data to [http://localhost:8000](http://localhost:8000) to view it in the console.
 
 ## Useful links:
-How to use react-router-dom to make private route [React Router 6: Private Route](https://www.robinwieruch.
-de/react-router-private-routes/)
+How to style README.md file [GitHub](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+
+How to use react-router-dom to make private route [React Router 6: Private Route](https://www.robinwieruch.de/react-router-private-routes/).
+
+1. Allow use predefine path if don't pass path to child from parent component.
+- 
+```javascript
+<Route element={<ProtectedRoute isAllowed={!!user}/>}>
+  <Route path="/movies" element={<Movies/>}/>
+</Route>
+```
+> Some additional information
+
+2. Programmatically pass path to child but if not child use path by default.
+```javascript
+<Route
+  path="/notes"
+  element={
+    <ProtectedRoute
+      redirectPath="/login"
+      isAllowed={!!user && user.permissions.includes('analyze' && user.roles.includes('admin'))}
+    >
+      <CreateNotes/>
+    </ProtectedRoute>
+  }
+/>
+```
+> Some additional information
+
+
+How to make server route [Express route](https://medium.com/swlh/node-js-router-and-routes-a4a3cfced5c4).
+
 
 ## Learn More
 

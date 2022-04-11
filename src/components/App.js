@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navigation } from "./Navigation/Navigation";
 import { Movies } from "../pages/Movies/Movies";
@@ -7,36 +6,25 @@ import { CreateNotes } from "../pages/Notes/CreateNotes";
 import { AllCryptos } from '../pages/Cryptos/AllCryptos';
 import { ProtectedRoute } from "./ProtectedRoute";
 import { LoginPage } from "./LoginPage/LoginPage";
+import { useSelector } from "react-redux";
 // import { HomePage } from "./HomePage/HomePage";
 
 export const App = () => {
-  const [user, setUser] = useState(null);
   
-  const handleLogin = () =>
-    setUser({
-      id: '1',
-      name: 'robin',
-      permissions: ['analyze'],
-      roles: ['admin'],
-    });
-  
-  const handleLogout = () => setUser(null);
-  
-  console.log('user:', user, '!!user', !!user);
+  const { user } = useSelector(state => state?.authentication);
   
   return (
     <>
       <Navigation/>
-      {user ? (
-        <button onClick={handleLogout}>Sign Out</button>
-      ) : (
-        <button onClick={handleLogin}>Sign In</button>
-      )}
+      {/*{user ? (*/}
+      {/*  <button onClick={handleLogout}>Sign Out</button>*/}
+      {/*) : (*/}
+      {/*  <button onClick={handleLogin}>Sign In</button>*/}
+      {/*)}*/}
       
       <Routes>
-        <Route index element={<LoginPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
-        <Route element={<ProtectedRoute isAllowed={!!user}/>}>
+        <Route element={<ProtectedRoute isAllowed={!!user?.username}/>}>
           <Route path="/movies" element={<Movies/>}/>
         </Route>
         
@@ -45,7 +33,8 @@ export const App = () => {
           element={
             <ProtectedRoute
               redirectPath="/login"
-              isAllowed={!!user && user.permissions.includes('analyze' && user.roles.includes('admin'))}
+              // isAllowed={!!user && user.permissions.includes('analyze' && user.roles.includes('admin'))}
+              isAllowed={user?.username && user?.password}
             >
               <CreateNotes/>
             </ProtectedRoute>

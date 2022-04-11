@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { login } from "../../redux/actions/user.actions";
+import { login, logout } from "../../redux/actions/user.actions";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const [state, setState] = useState({
       username: '',
       password: '',
@@ -18,23 +20,34 @@ export const LoginPage = () => {
     });
   };
   
-  const handleSubmit = (e) => {
+  const handleLogin = e => {
     e.preventDefault();
     setState({
       ...state,
-      submitted: true
+      submitted: true,
     });
     
-    if (state.susername && state.password) {
+    if (state.username && state.password) {
       dispatch(login(state.username, state.password));
     }
+    navigate('/movies');
   };
   
-  const loggingIn = true;
+  const handleLogout = e => {
+    e.preventDefault();
+    setState({
+      ...state,
+      username: '',
+      password: '',
+      submitted: false,
+    });
+    dispatch(logout());
+  };
+  
   return (
     <div className="col-md-6 col-md-offset-3">
       <h2>Login</h2>
-      <form name="form" onSubmit={handleSubmit}>
+      <form name="form">
         <div className={'form-group' + (state.submitted && !state.username ? ' has-error' : '')}>
           <label htmlFor="username">Username</label>
           <input type="text" className="form-control" name="username" value={state.username} onChange={handleChange}/>
@@ -51,13 +64,8 @@ export const LoginPage = () => {
           }
         </div>
         <div className="form-group">
-          <button className="btn btn-primary">Login</button>
-          {loggingIn &&
-            <img
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-              alt={state.username}
-            />
-          }
+          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+          <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
         </div>
       </form>
     </div>

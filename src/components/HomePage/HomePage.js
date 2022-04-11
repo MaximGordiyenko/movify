@@ -30,7 +30,7 @@ export const HomePage = () => {
         </ul>
       }
       <p>
-        <Link to="/login">Logout</Link>
+        <Link to="/SignOut">Logout</Link>
       </p>
     </div>
   );

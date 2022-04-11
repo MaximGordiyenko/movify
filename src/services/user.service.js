@@ -1,7 +1,7 @@
-import config from '../config';
+import config from '../config.json';
 import { authHeader } from '../helpers/auth-header';
 
-const login = (username, password) => {
+export const SignIn = (username, password) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -16,14 +16,14 @@ const login = (username, password) => {
       
       return user;
     });
-}
+};
 
-const logout = () => {
+export const SignOut = () => {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
 };
 
-const getAll = () => {
+export const getAll = () => {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -32,14 +32,15 @@ const getAll = () => {
   return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 };
 
-const handleResponse = (response) => {
+const handleResponse = response => {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     if (!response.ok) {
       if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout();
-        window.location.reload()
+        // auto SignOut if 401 response returned from api
+        SignOut();
+        // window.location.reload()
+        window.location.reload(true);
       }
       
       const error = (data && data.message) || response.statusText;
@@ -48,10 +49,4 @@ const handleResponse = (response) => {
     
     return data;
   });
-};
-
-export const userService = {
-  login,
-  logout,
-  getAll
 };

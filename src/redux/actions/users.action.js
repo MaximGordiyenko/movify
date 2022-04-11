@@ -1,22 +1,22 @@
-import { usersConstants } from '../../constants/users.constants';
+import { userConstants } from '../../constants/user.constants';
 import { alertActions } from './alert.actions';
 
 const request = () => {
   return {
-    type: usersConstants.GETALL_REQUEST,
+    type: userConstants.GETALL_REQUEST,
   };
 };
 
 const success = users => {
   return {
-    type: usersConstants.GETALL_SUCCESS,
+    type: userConstants.GETALL_SUCCESS,
     users,
   };
 };
 
 const failure = error => {
   return {
-    type: usersConstants.GETALL_FAILURE,
+    type: userConstants.GETALL_FAILURE,
     error,
   };
 };

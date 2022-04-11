@@ -1,5 +1,5 @@
 import { userConstants } from '../../constants/user.constants';
-import { userService } from '../../services/user.service';
+import { SignIn, SignOut } from '../../services/user.service';
 import { alertActions } from './alert.actions';
 import { history } from '../../helpers/history';
 
@@ -26,7 +26,7 @@ const failure = error => {
 
 export const login = (username, password) => dispatch => {
   dispatch(request({ username }));
-  userService.login(username, password)
+  SignIn(username, password)
     .then(
       user => {
         dispatch(success(user));
@@ -40,7 +40,7 @@ export const login = (username, password) => dispatch => {
 };
 
 export const logout = () => {
-  userService.logout();
+  SignOut();
   return {
     type: userConstants.LOGOUT
   };
