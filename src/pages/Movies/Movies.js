@@ -8,8 +8,8 @@ import { useStyle } from './Movies.style';
 export const Movies = () => {
   const classes = useStyle();
   const dispatch = useDispatch();
-  const GOTData = useSelector(state => state.gameOfThrones.gameOfThronesData);
-  const GOTDataLoading = useSelector(state => state.gameOfThrones.loading);
+  const { gameOfThronesData } = useSelector(state => state?.gameOfThrones);
+  const { loading } = useSelector(state => state?.gameOfThrones);
   
   useEffect(() => {
     dispatch(gameOfThrones());
@@ -17,11 +17,11 @@ export const Movies = () => {
   
   return (
     <>
-      {GOTDataLoading && <div className={classes.loading}>Loading...</div>}
+      {loading && <div className={classes.loading}>Loading...</div>}
       <div className={classes.container}>
-        {GOTData?.map(movie =>
+        {gameOfThronesData?.map(movie =>
           <div key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>
+            <Link to={`/movies/${movie.id}`}>
               <ActionAreaCard movie={movie}/>
             </Link>
           </div>
