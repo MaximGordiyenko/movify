@@ -1,7 +1,6 @@
 import { userConstants } from '../../constants/user.constants';
-import { SignIn, SignOut } from '../../services/user.service';
-import { alertActions } from './alert.actions';
-import { history } from '../../helpers/history';
+import { userService } from '../../services/user.service';
+import { alertAction } from './alert.action';
 
 const request = user => {
   return {
@@ -24,24 +23,28 @@ const failure = error => {
   };
 };
 
-export const login = (username, password) => dispatch => {
+const login = (username, password) => dispatch => {
   dispatch(request({ username }));
-  SignIn(username, password)
+  userService.SignIn(username, password)
     .then(
       user => {
         dispatch(success(user));
-        history.push('/');
       },
       error => {
         dispatch(failure(error));
-        dispatch(alertActions.error(error));
+        dispatch(alertAction.error(error));
       }
     );
 };
 
-export const logout = () => {
-  SignOut();
+const logout = () => {
+  userService.SignOut();
   return {
     type: userConstants.LOGOUT
   };
 };
+
+export const userAction = {
+  login,
+  logout,
+}

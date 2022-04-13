@@ -1,11 +1,6 @@
 import { alertConstants } from '../../constants/alert.constants';
 
-const alertState = {
-  type: 'alert-success',
-  message: 'Is everything ok'
-};
-
-export const alert = (state = alertState, action) => {
+export const alert = (state = {}, action) => {
   switch (action.type) {
     case alertConstants.SUCCESS:
       return {

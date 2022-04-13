@@ -1,4 +1,4 @@
-import { CREATE_NOTE, DELETE_NOTE } from "../actions/types";
+import { noteConstants } from "../../constants/note.constants";
 
 const initialState = [
   {
@@ -17,7 +17,7 @@ const initialState = [
 
 export const notes = (state = initialState, { type, id, title, details, category }) => {
   switch (type) {
-    case CREATE_NOTE:
+    case noteConstants.CREATE_NOTE:
       return [
         ...state,
         {
@@ -27,7 +27,7 @@ export const notes = (state = initialState, { type, id, title, details, category
           category
         }
       ];
-    case DELETE_NOTE:
+    case noteConstants.DELETE_NOTE:
       return [
         ...state.filter(post => post.id !== id)
       ];

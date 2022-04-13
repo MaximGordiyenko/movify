@@ -1,4 +1,4 @@
-import { GET_FAILURE, GET_SUCCESS } from "../actions/types";
+import { noteConstants } from "../../constants/note.constants";
 
 const initialState = {
   arrayCryptos: [],
@@ -8,14 +8,14 @@ const initialState = {
 
 export const multiCryptos = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_SUCCESS:
+    case noteConstants.GET_SUCCESS:
       return {
         ...state,
         arrayCryptos: payload,
         loading: false,
         error: null,
       };
-    case GET_FAILURE:
+    case noteConstants.GET_FAILURE:
       return {
         ...state,
         loading: false,

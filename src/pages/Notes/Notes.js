@@ -1,14 +1,12 @@
 import { Container, List, Typography } from "@material-ui/core";
 import { GlowButton } from "../../components/GlowButton/GlowButton";
 import { useStyle } from "./CreateNotes.style";
-import { CoinsExchange } from "../../CoinsExchange";
 
 export const Notes = ({ notes }) => {
   const classes = useStyle();
   
   return (
     <Container>
-      <CoinsExchange/>
       {notes.map(note =>
         <List key={note.id}>
           <h2 className={classes.text}>

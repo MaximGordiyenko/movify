@@ -1,8 +1,8 @@
-import { CREATE_NOTE, DELETE_NOTE } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import { noteConstants } from "../../constants/note.constants";
 
 export const createNote = ({ title, details, category }) => ({
-  type: CREATE_NOTE,
+  type: noteConstants.CREATE_NOTE,
   id: uuidv4(),
   title,
   details,
@@ -10,6 +10,6 @@ export const createNote = ({ title, details, category }) => ({
 });
 
 export const deleteNOTES = id => ({
-  type: DELETE_NOTE,
+  type: noteConstants.DELETE_NOTE,
   id,
 });

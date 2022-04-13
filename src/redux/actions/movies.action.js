@@ -1,13 +1,13 @@
 import axios from "axios";
-import { GET_FAILURE, GET_SUCCESS } from "./types";
+import { noteConstants } from "../../constants/note.constants";
 
 export const getSuccess = api => ({
-  type: GET_SUCCESS,
+  type: noteConstants.GET_SUCCESS,
   payload: api,
 });
 
 export const getFailure = error => ({
-  type: GET_FAILURE,
+  type: noteConstants.GET_FAILURE,
   payload: error,
 });
 

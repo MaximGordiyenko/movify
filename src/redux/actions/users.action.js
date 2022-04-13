@@ -1,5 +1,6 @@
 import { userConstants } from '../../constants/user.constants';
-import { alertActions } from './alert.actions';
+import { alertAction } from './alert.action';
+import { userService } from "../../services/user.service";
 
 const request = () => {
   return {
@@ -21,14 +22,18 @@ const failure = error => {
   };
 };
 
-export const getAll = () => dispatch => {
+const getAll = () => dispatch => {
   dispatch(request());
-  getAll()
+  userService.getAll()
     .then(
       users => dispatch(success(users)),
       error => {
         dispatch(failure(error));
-        dispatch(alertActions.error(error));
+        dispatch(alertAction.error(error));
       }
     );
+};
+
+export const usersAction = {
+  getAll,
 };
