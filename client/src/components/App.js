@@ -5,26 +5,26 @@ import { Movies } from "../pages/Movies/Movies";
 import { Movie } from "../pages/Movies/Movie";
 import { CreateNotes } from "../pages/Notes/CreateNotes";
 import { AllCryptos } from '../pages/Cryptos/AllCryptos';
-import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute } from "./private-route/ProtectedRoute";
 import { Landing } from "./layout/Landing";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
+import { Dashboard } from "./dashboard/Dashboard";
 
 export const App = () => {
-  const { user } = useSelector(state => state?.authentication);
+  const { isAuthenticated } = useSelector(state => state?.authUser);
   
   return (
     <>
-      <Navigation isAllowed={!!user?.username}/>
+      <Navigation/>
       <Routes>
-        {/*<Route path="/home" element={<HomePage/>}/>*/}
-        {/*<Route path="/login" element={<LoginPage/>}/>*/}
         <Route path="/" element={<Landing/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/logIn" element={<Login/>}/>
-        <Route element={<ProtectedRoute isAllowed={!!user?.username}/>}>
-          <Route path="/crypto" element={<AllCryptos/>}/>
+        <Route path="/crypto" element={<AllCryptos/>}/>
         
+        <Route element={<ProtectedRoute auth={isAuthenticated}/>}>
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Route>
         
         <Route
@@ -32,8 +32,8 @@ export const App = () => {
           element={
             <ProtectedRoute
               redirectPath="/login"
-              // isAllowed={!!user && user.permissions.includes('analyze' && user.roles.includes('admin'))}
-              isAllowed={user?.username && user?.password}
+              auth={isAuthenticated}
+              // isAllow={!!user && user.permissions.includes('analyze' && user.roles.includes('admin'))}
             >
               <CreateNotes/>
             </ProtectedRoute>

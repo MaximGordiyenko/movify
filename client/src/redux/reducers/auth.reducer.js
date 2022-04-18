@@ -1,24 +1,25 @@
 import { authConstants } from "../../constants/auth.constants";
+
 const isEmpty = require("is-empty");
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  loading: false
+  jwt: {},
 };
 
-export const authUser = (state = initialState, { type, payload }) => {
+export const authUser = (state = initialState, { type, user, jwt }) => {
   switch (type) {
-    case authConstants.SET_CURRENT_USER:
+    case authConstants.USER_REGISTER:
       return {
         ...state,
-        isAuthenticated: !isEmpty(payload),
-        user: payload
+        user,
       };
-    case authConstants.USER_LOADING:
+    case authConstants.USER_LOGIN:
       return {
         ...state,
-        loading: true
+        isAuthenticated: !isEmpty(jwt),
+        jwt,
       };
     default:
       return state;

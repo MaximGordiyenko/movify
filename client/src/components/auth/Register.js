@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/actions/auth.action";
+import { Link, useNavigate } from "react-router-dom";
+import { authAction } from "../../redux/actions/auth.action";
 import classnames from 'classnames';
 
 export const Register = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const navigate = useNavigate();
   
   const [state, setState] = useState({
     name: "",
@@ -15,9 +15,15 @@ export const Register = () => {
     password2: "",
   });
   
-  // const { auth } = useSelector(state => state?.authUser?.user);
+  const { user } = useSelector(state => state?.authUser);
   const { error } = useSelector(state => state?.authError);
- 
+  
+  useEffect(() => {
+    if (user.email) {
+      navigate('/login');
+    }
+  }, [user.email, navigate]);
+  
   const onChange = ({ target: { name, value } }) => {
     setState({
       ...state,
@@ -33,7 +39,7 @@ export const Register = () => {
       password: state.password,
       password2: state.password2
     };
-    dispatch(registerUser(newUser, location.pathname));
+    dispatch(authAction.registerUser(newUser));
   };
   
   return (

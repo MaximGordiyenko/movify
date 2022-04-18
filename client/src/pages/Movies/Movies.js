@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { ActionAreaCard } from "../../components/Card/Card";
+import { ActionAreaCard } from "../../components/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { gameOfThrones } from "../../redux/actions/movies.action";
 import { useStyle } from './Movies.style';
@@ -21,9 +21,9 @@ export const Movies = () => {
       {loading && <div className={classes.loading}>Loading...</div>}
       <div className={classes.container}>
         {gameOfThronesData?.map(movie =>
-          <div key={movie.id}>
+          <div key={movie?.id}>
             <Link to={`/movies/${movie.id}`}>
-              <ActionAreaCard movie={movie}/>
+              <ActionAreaCard movie={movie} key={movie?.id}/>
             </Link>
           </div>
         )}

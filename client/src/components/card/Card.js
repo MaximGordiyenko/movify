@@ -6,7 +6,7 @@ export const ActionAreaCard = ({movie}) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={movie.i.imageUrl}
+          image={movie?.i?.imageUrl}
           alt={movie.l}
         />
         <CardContent>

@@ -6,9 +6,6 @@ import { notes } from "./reducers/notes.reducer";
 import { loadState, saveState } from "./localStorage";
 import throttle from 'lodash.throttle';
 import { multiCryptos } from "./reducers/crypto.reducer";
-import { alert } from './reducers/alert.reducer';
-import { users } from "./reducers/users.reducer";
-import { authentication } from "./reducers/authentication.reducer";
 import { authUser } from './reducers/auth.reducer';
 import {authError} from './reducers/error.reducer';
 
@@ -21,11 +18,8 @@ export const store = createStore(
     gameOfThrones,
     notes,
     multiCryptos,
-    alert,
-    users,
     authUser,
     authError,
-    authentication,
   }),
   persistedState,
   composedEnhancers

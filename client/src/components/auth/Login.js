@@ -1,13 +1,27 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../redux/actions/auth.action";
+import { Link, useNavigate } from "react-router-dom";
+import classnames from 'classnames';
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const [state, setState] = useState({
     email: "",
     password: "",
-    errors: {}
   });
+  
+  // const { user } = useSelector(state => state?.authUser);
+  const { isAuthenticated } = useSelector(state => state?.authUser);
+  const { error } = useSelector(state => state?.authError);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
   
   const onChange = ({ target: { name, value } }) => {
     setState({
@@ -22,10 +36,9 @@ export const Login = () => {
       email: state.email,
       password: state.password
     };
-    console.log(userData);
+    dispatch(authAction.loginUser(userData));
   };
   
-  const { errors } = state;
   return (
     <div className="container">
       <div className="row">
@@ -46,23 +59,31 @@ export const Login = () => {
               <input
                 onChange={onChange}
                 value={state.email}
-                error={errors.email}
-                name='email'
+                error={error?.email}
+                name="email"
                 id="email"
                 type="email"
+                className={classnames("", {
+                  invalid: error?.email || error?.emailnotfound
+                })}
               />
               <label htmlFor="email">Email</label>
+              <span className="red-text">{error?.email} {error?.emailnotfound}</span>
             </div>
             <div className="input-field col s12">
               <input
                 onChange={onChange}
                 value={state.password}
-                error={errors.password}
-                name='password'
+                error={error?.password}
+                name="password"
                 id="password"
                 type="password"
+                className={classnames("", {
+                  invalid: error?.password || error?.passwordincorrect
+                })}
               />
               <label htmlFor="password">Password</label>
+              <span className="red-text">{error?.password} {error?.passwordincorrect}</span>
             </div>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button
@@ -73,8 +94,7 @@ export const Login = () => {
                   marginTop: "1rem"
                 }}
                 type="submit"
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3">
                 Login
               </button>
             </div>
