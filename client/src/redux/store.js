@@ -3,10 +3,10 @@ import thunk from "redux-thunk";
 import logger from "./middleware/logger";
 import throttle from 'lodash.throttle';
 import { loadState, saveState } from "../helpers/localStorage";
-import { gameOfThrones } from "./reducers/movies.reducer";
+import { setGameOfThrones } from "./reducers/movies.reducer";
 import { notes } from "./reducers/notes.reducer";
-import { multiCryptos } from "./reducers/crypto.reducer";
-import { authUser } from './reducers/auth.reducer';
+import { setCandleBTC } from "./reducers/crypto.reducer";
+import { auth } from './reducers/auth.reducer';
 import { error } from './reducers/error.reducer';
 
 const middlewareEnhancer = applyMiddleware(thunk, logger);
@@ -15,10 +15,10 @@ const persistedState = loadState();
 
 export const store = createStore(
   combineReducers({
-    gameOfThrones,
+    setGameOfThrones,
     notes,
-    multiCryptos,
-    authUser,
+    setCandleBTC,
+    auth,
     error,
   }),
   persistedState,

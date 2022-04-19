@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { multiCurrencies } from "../../redux/actions/crypto.action";
+import { getCandleBTC } from "../../redux/actions/crypto.action";
 import { LineChart } from "../charts/LineChart";
 import moment from "moment";
 
-export const AllCryptos = () => {
+export const Cryptos = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(multiCurrencies());
+    dispatch(getCandleBTC());
   }, [dispatch]);
   
-  const { arrayCryptos, loading } = useSelector(state => state?.multiCryptos);
+  const { arrayBtcUsd, loading } = useSelector(state => state?.setCandleBTC);
   const { error } = useSelector(state => state?.error);
 
-  const formattedDate = arrayCryptos?.map(el => {
+  const formattedDate = arrayBtcUsd?.map(el => {
     return { x: moment(el[6]).format("YYYY-MM-DD"), y: Math.ceil(el[4]) };
   });
   
@@ -23,7 +23,7 @@ export const AllCryptos = () => {
       {error ?
         <div dangerouslySetInnerHTML={{ __html: error }}/> :
         <>
-          {loading && arrayCryptos.length === 0 && <div>Loading...</div>}
+          {loading && arrayBtcUsd.length === 0 && <div>Loading...</div>}
           <LineChart data={formattedDate}/>
         </>
       }

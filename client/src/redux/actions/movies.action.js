@@ -1,14 +1,14 @@
 import axios from "axios";
 import { rapidApi, imdbURL } from '../../config/keys';
-import { commonConstants } from "../../constants/common.constants";
+import { moviesConstants } from "../../constants/movies.constants";
 import { errorAction } from "./errors.action";
 
-export const success = api => ({
-  type: commonConstants.GET_SUCCESS,
-  api,
+export const success = movies => ({
+  type: moviesConstants.GET_GOT_SUCCESS,
+  movies,
 });
 
-export const gameOfThrones = () => dispatch => {
+export const getGameOfThrones = () => dispatch => {
   const options = {
     method: 'GET',
     url: `${imdbURL}`,

@@ -7,7 +7,7 @@ const initialState = {
   jwt: {},
 };
 
-export const authUser = (state = initialState, { type, user, jwt }) => {
+export const auth = (state = initialState, { type, user, jwt }) => {
   switch (type) {
     case authConstants.USER_REGISTER:
       return {

@@ -4,7 +4,7 @@ import { Navigation } from "./layout/Navigation/Navigation";
 import { Movies } from "../pages/movies/Movies";
 import { Movie } from "../pages/movies/Movie";
 import { CreateNotes } from "../pages/notes/CreateNotes";
-import { AllCryptos } from '../pages/cryptos/AllCryptos';
+import { Cryptos } from '../pages/cryptos/Cryptos';
 import { ProtectedRoute } from "./private-route/ProtectedRoute";
 import { Landing } from "./layout/Landing";
 import { Register } from "./auth/Register";
@@ -12,7 +12,7 @@ import { Login } from "./auth/Login";
 import { Dashboard } from "./dashboard/Dashboard";
 
 export const App = () => {
-  const { isAuthenticated } = useSelector(state => state?.authUser);
+  const { isAuthenticated } = useSelector(state => state?.auth);
   
   return (
     <>
@@ -21,7 +21,7 @@ export const App = () => {
         <Route path="/" element={<Landing/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/logIn" element={<Login/>}/>
-        <Route path="/crypto" element={<AllCryptos/>}/>
+        <Route path="/crypto" element={<Cryptos/>}/>
         
         <Route element={<ProtectedRoute auth={isAuthenticated}/>}>
           <Route path="/dashboard" element={<Dashboard/>}/>

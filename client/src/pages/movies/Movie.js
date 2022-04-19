@@ -9,7 +9,7 @@ export const Movie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   
-  const { gameOfThronesData } = useSelector(state => state?.gameOfThrones);
+  const { gameOfThronesData } = useSelector(state => state?.setGameOfThrones);
   
   useEffect(() => {
     const getMovie = gameOfThronesData?.find(movie => movie?.id === id);

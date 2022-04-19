@@ -13,8 +13,8 @@ export const Login = () => {
     password: "",
   });
   
-  // const { user } = useSelector(state => state?.authUser);
-  const { isAuthenticated } = useSelector(state => state?.authUser);
+  // const { user } = useSelector(state => state?.auth);
+  const { isAuthenticated } = useSelector(state => state?.auth);
   const { error } = useSelector(state => state?.error);
 
   useEffect(() => {

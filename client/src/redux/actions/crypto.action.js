@@ -1,15 +1,15 @@
 import axios from "axios";
 import { localhost, port } from '../../config/keys';
-import { commonConstants } from "../../constants/common.constants";
 import { errorAction } from "./errors.action";
+import { cryptoConstants } from "../../constants/crypto.constants";
 
-export const success = api => ({
-  type: commonConstants.GET_SUCCESS,
-  api,
+const success = btcUsd => ({
+  type: cryptoConstants.GET_BTC_SUCCESS,
+  btcUsd,
 });
 
-export const multiCurrencies = () => dispatch => {
-  return axios.get(`${localhost}:${port}/cryptos`)
+export const getCandleBTC = () => dispatch => {
+  return axios.get(`${localhost}:${port}/api/btc/candle`)
     .then(res => dispatch(success(res.data)))
     .catch(error => dispatch(errorAction.failure(error)));
 };

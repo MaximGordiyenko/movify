@@ -15,7 +15,7 @@ export const Register = () => {
     password2: "",
   });
   
-  const { user } = useSelector(state => state?.authUser);
+  const { user } = useSelector(state => state?.auth);
   const { error } = useSelector(state => state?.error);
   
   useEffect(() => {

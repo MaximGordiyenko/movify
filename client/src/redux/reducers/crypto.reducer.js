@@ -1,16 +1,16 @@
-import { commonConstants } from "../../constants/common.constants";
+import { cryptoConstants } from "../../constants/crypto.constants";
 
 const initialState = {
-  arrayCryptos: [],
+  arrayBtcUsd: [],
   loading: true,
 };
 
-export const multiCryptos = (state = initialState, { type, api }) => {
+export const setCandleBTC = (state = initialState, { type, btcUsd }) => {
   switch (type) {
-    case commonConstants.GET_SUCCESS:
+    case cryptoConstants.GET_BTC_SUCCESS:
       return {
         ...state,
-        arrayCryptos: api,
+        arrayBtcUsd: btcUsd,
         loading: false,
       };
     default:

@@ -1,16 +1,16 @@
-import { commonConstants } from "../../constants/common.constants";
+import { moviesConstants } from "../../constants/movies.constants";
 
 const initialState = {
   gameOfThronesData: [],
   loading: true,
 };
 
-export const gameOfThrones = (state = initialState, { type, api }) => {
+export const setGameOfThrones = (state = initialState, { type, movies }) => {
   switch (type) {
-    case commonConstants.GET_SUCCESS:
+    case moviesConstants.GET_GOT_SUCCESS:
       return {
         ...state,
-        gameOfThronesData: api,
+        gameOfThronesData: movies,
         loading: false,
       };
     default:
