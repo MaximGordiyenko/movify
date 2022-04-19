@@ -5,7 +5,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-> npm run server
+> npm run nodemon server
 
 Runs the sever in the development mode.<br />
 Pass data to [http://localhost:8000](http://localhost:8000) to view it in the console.
@@ -15,6 +15,11 @@ How to style README.md file [GitHub](https://github.com/adam-p/markdown-here/wik
 
 How to use react-router-dom to make private route [React Router 6: Private Route](https://www.robinwieruch.de/react-router-private-routes/).
 
+## Setup backend
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs): used to hash passwords before we store them in our database
+- [body-parser](https://www.npmjs.com/package/body-parser): used to parse incoming request bodies in a middleware
+
+### Code explanation:
 1. Allow use predefine path if don't pass path to child from parent component.
 - 
 ```javascript
