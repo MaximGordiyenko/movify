@@ -36,7 +36,7 @@ export const Login = () => {
       email: state.email,
       password: state.password
     };
-    dispatch(authAction.loginUser(userData));
+    dispatch(authAction.login(userData));
   };
   
   return (

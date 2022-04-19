@@ -11,7 +11,7 @@ const success = user => ({
 });
 
 // Register User
-const registerUser = userData => dispatch => {
+const register = userData => dispatch => {
   axios.post(`${localhost}:${port}/api/users/register`, userData)
     .then(res => dispatch(success(res.data)))
     .catch(error => dispatch(errorAction.failure(error)));
@@ -19,13 +19,13 @@ const registerUser = userData => dispatch => {
 
 
 // Set logged in user
-const setUserLogin = jwt => ({
+const setUser = jwt => ({
   type: authConstants.USER_LOGIN,
   jwt,
 });
 
 // Login - get user token
-const loginUser = userData => dispatch => {
+const login = userData => dispatch => {
   axios.post(`${localhost}:${port}/api/users/login`, userData)
     .then(res => {
       // Save to localStorage & Set token to localStorage
@@ -36,24 +36,24 @@ const loginUser = userData => dispatch => {
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
-      dispatch(setUserLogin(decoded));
+      dispatch(setUser(decoded));
     })
     .catch(error => dispatch(errorAction.failure(error)));
 };
 
 // Log user out
-const logoutUser = () => dispatch => {
+const logout = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
-  dispatch(setUserLogin({}));
+  dispatch(setUser({}));
 };
 
 export const authAction = {
-  registerUser,
-  loginUser,
-  setUserLogin,
-  logoutUser,
+  register,
+  login,
+  setUser,
+  logout,
 };

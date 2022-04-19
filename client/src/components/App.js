@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Navigation } from "./layout/Navigation/Navigation";
-import { Movies } from "../pages/Movies/Movies";
-import { Movie } from "../pages/Movies/Movie";
-import { CreateNotes } from "../pages/Notes/CreateNotes";
-import { AllCryptos } from '../pages/Cryptos/AllCryptos';
+import { Movies } from "../pages/movies/Movies";
+import { Movie } from "../pages/movies/Movie";
+import { CreateNotes } from "../pages/notes/CreateNotes";
+import { AllCryptos } from '../pages/cryptos/AllCryptos';
 import { ProtectedRoute } from "./private-route/ProtectedRoute";
 import { Landing } from "./layout/Landing";
 import { Register } from "./auth/Register";

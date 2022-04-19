@@ -6,7 +6,7 @@ export const Dashboard = () => {
   
   const onLogoutClick = e => {
     e.preventDefault();
-    dispatch(authAction.logoutUser());
+    dispatch(authAction.logout());
   };
   
   return (

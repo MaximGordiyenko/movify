@@ -39,7 +39,7 @@ export const Register = () => {
       password: state.password,
       password2: state.password2
     };
-    dispatch(authAction.registerUser(newUser));
+    dispatch(authAction.register(newUser));
   };
   
   return (

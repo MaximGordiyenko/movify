@@ -12,7 +12,7 @@ import { useStyle } from "./CreateNotes.style";
 import { useState } from "react";
 import { Notes } from "./Notes";
 import { useDispatch, useSelector } from "react-redux";
-import { createNote, deleteNote } from "../../redux/actions/notes.action";
+import { createNote } from "../../redux/actions/notes.action";
 import { GlowButton } from "../../components/glowButton/GlowButton";
 
 export const CreateNotes = () => {
@@ -35,7 +35,6 @@ export const CreateNotes = () => {
   const deleteNote = e => {
     e.preventDefault();
     console.log(e);
-    // dispatch(deleteNote())
   }
   return (
     <Container maxWidth="xl" className={classes.container}>

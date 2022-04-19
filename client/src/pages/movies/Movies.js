@@ -4,7 +4,6 @@ import { ActionAreaCard } from "../../components/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { gameOfThrones } from "../../redux/actions/movies.action";
 import { useStyle } from './Movies.style';
-import { error } from "../../redux/reducers/error.reducer";
 
 export const Movies = () => {
   const classes = useStyle();
