@@ -1,5 +1,4 @@
 import { authConstants } from "../../constants/auth.constants";
-
 const isEmpty = require("is-empty");
 
 const initialState = {

@@ -1,13 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import logger from "./middleware/logger";
+import throttle from 'lodash.throttle';
+import { loadState, saveState } from "../helpers/localStorage";
 import { gameOfThrones } from "./reducers/movies.reducer";
 import { notes } from "./reducers/notes.reducer";
-import { loadState, saveState } from "./localStorage";
-import throttle from 'lodash.throttle';
 import { multiCryptos } from "./reducers/crypto.reducer";
 import { authUser } from './reducers/auth.reducer';
-import {authError} from './reducers/error.reducer';
+import { error } from './reducers/error.reducer';
 
 const middlewareEnhancer = applyMiddleware(thunk, logger);
 const composedEnhancers = compose(middlewareEnhancer);
@@ -19,7 +19,7 @@ export const store = createStore(
     notes,
     multiCryptos,
     authUser,
-    authError,
+    error,
   }),
   persistedState,
   composedEnhancers

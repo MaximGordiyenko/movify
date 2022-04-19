@@ -12,33 +12,38 @@ import { useStyle } from "./CreateNotes.style";
 import { useState } from "react";
 import { Notes } from "./Notes";
 import { useDispatch, useSelector } from "react-redux";
-import { createNote } from "../../redux/actions/notes.action";
-import { GlowButton } from "../../components/GlowButton/GlowButton";
+import { createNote, deleteNote } from "../../redux/actions/notes.action";
+import { GlowButton } from "../../components/glowButton/GlowButton";
 
 export const CreateNotes = () => {
+  const dispatch = useDispatch();
+  const classes = useStyle();
+  
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
   const [category, setCategory] = useState('todos');
   
   const notes = useSelector(state => state.notes);
-  const dispatch = useDispatch();
   
-  const classes = useStyle();
-  
-  const submit = e => {
+  const submitNote = e => {
     e.preventDefault();
     if (title && details) {
       dispatch(createNote({ title, details, category }));
     }
   };
   
+  const deleteNote = e => {
+    e.preventDefault();
+    console.log(e);
+    // dispatch(deleteNote())
+  }
   return (
     <Container maxWidth="xl" className={classes.container}>
       <Typography variant="h4" color="textSecondary" gutterBottom className={classes.text}>
         Create new Notes
       </Typography>
       
-      <form noValidate autoComplete="off" onSubmit={submit}>
+      <form noValidate autoComplete="off" onSubmit={submitNote}>
         <TextField
           className={classes.field}
           onChange={e => setTitle(e.target.value)}
@@ -78,7 +83,7 @@ export const CreateNotes = () => {
           type="submit"
           text="Submit"/>
       </form>
-      <Notes notes={notes}/>
+      <Notes notes={notes} onClick={deleteNote}/>
     </Container>
   );
 };

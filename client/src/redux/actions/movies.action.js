@@ -1,14 +1,10 @@
 import axios from "axios";
 import { commonConstants } from "../../constants/common.constants";
+import { errorAction } from "./errors.action";
 
 export const getSuccess = api => ({
   type: commonConstants.GET_SUCCESS,
   api,
-});
-
-export const getFailure = error => ({
-  type: commonConstants.GET_FAILURE,
-  error,
 });
 
 export const gameOfThrones = () => dispatch => {
@@ -24,5 +20,5 @@ export const gameOfThrones = () => dispatch => {
   
   return axios.request(options)
     .then(response => dispatch(getSuccess(response.data.d)))
-    .catch(error => dispatch(getFailure(error)));
+    .catch(error => dispatch(errorAction.failure(error)));
 };

@@ -9,7 +9,7 @@ export const createNote = ({ title, details, category }) => ({
   category,
 });
 
-export const deleteNOTES = id => ({
+export const deleteNote = id => ({
   type: noteConstants.DELETE_NOTE,
   id,
 });

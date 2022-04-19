@@ -42,6 +42,7 @@ export const App = () => {
         <Route path="/movies" element={<Movies/>}/>
         <Route path="/movies/:id" element={<Movie/>}/>
         <Route path="*" element={<p>There's nothing here: 404!</p>}/>
+        <Route path="/error" element={<p>{}</p>}/>
       </Routes>
     </>
   );

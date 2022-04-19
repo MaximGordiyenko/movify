@@ -11,9 +11,8 @@ export const AllCryptos = () => {
     dispatch(multiCurrencies());
   }, [dispatch]);
   
-  const { loading } = useSelector(state => state?.multiCryptos);
-  const { error } = useSelector(state => state?.multiCryptos);
-  const { arrayCryptos } = useSelector(state => state?.multiCryptos);
+  const { arrayCryptos, loading } = useSelector(state => state?.multiCryptos);
+  const { error } = useSelector(state => state?.error);
 
   const formattedDate = arrayCryptos?.map(el => {
     return { x: moment(el[6]).format("YYYY-MM-DD"), y: Math.ceil(el[4]) };
@@ -21,9 +20,13 @@ export const AllCryptos = () => {
   
   return (
     <>
-      {loading && arrayCryptos.length === 0 && <div>Loading...</div>}
-      {error && <p>{error.message}</p>}
-      <LineChart data={formattedDate}/>
+      {error ?
+        <div dangerouslySetInnerHTML={{ __html: error }}/> :
+        <>
+          {loading && arrayCryptos.length === 0 && <div>Loading...</div>}
+          <LineChart data={formattedDate}/>
+        </>
+      }
     </>
   );
 };

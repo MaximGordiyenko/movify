@@ -1,8 +1,8 @@
-import { authConstants } from "../../constants/auth.constants";
+import { errorConstants } from "../../constants/error.constants";
 
-export const authError = (state = {}, { type, error }) => {
+export const error = (state = {}, { type, error }) => {
   switch (type) {
-    case authConstants.GET_ERRORS:
+    case errorConstants.GET_FAILURE:
       return {
         ...state,
         error,

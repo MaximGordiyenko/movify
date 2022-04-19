@@ -1,5 +1,5 @@
 import style from './Navigation.module.css';
-import { Logo } from "../../Logo/Logo";
+import { Logo } from "../../logo/Logo";
 import { Link } from "react-router-dom";
 import { logoUrl } from "../../../constants";
 

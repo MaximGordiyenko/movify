@@ -15,7 +15,7 @@ export const Login = () => {
   
   // const { user } = useSelector(state => state?.authUser);
   const { isAuthenticated } = useSelector(state => state?.authUser);
-  const { error } = useSelector(state => state?.authError);
+  const { error } = useSelector(state => state?.error);
 
   useEffect(() => {
     if (isAuthenticated) {

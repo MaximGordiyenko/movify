@@ -3,36 +3,26 @@ import { setAuthToken } from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { authConstants } from "../../constants/auth.constants";
 import { localhost, port } from '../../config/keys';
+import { errorAction } from "./errors.action";
 
-const success = user => {
-  return {
-    type: authConstants.USER_REGISTER,
-    user,
-  };
-};
-
-const failure = error => {
-  return {
-    type: authConstants.GET_ERRORS,
-    error,
-  };
-};
+const success = user => ({
+  type: authConstants.USER_REGISTER,
+  user,
+});
 
 // Register User
 const registerUser = userData => dispatch => {
   axios.post(`${localhost}:${port}/api/users/register`, userData)
     .then(res => dispatch(success(res.data)))
-    .catch(err => dispatch(failure(err?.response?.data)));
+    .catch(error => dispatch(errorAction.failure(error)));
 };
 
 
 // Set logged in user
-const setUserLogin = jwt => {
-  return {
-    type: authConstants.USER_LOGIN,
-    jwt,
-  };
-};
+const setUserLogin = jwt => ({
+  type: authConstants.USER_LOGIN,
+  jwt,
+});
 
 // Login - get user token
 const loginUser = userData => dispatch => {
@@ -48,7 +38,7 @@ const loginUser = userData => dispatch => {
       // Set current user
       dispatch(setUserLogin(decoded));
     })
-    .catch(err => dispatch(failure(err?.response?.data)));
+    .catch(error => dispatch(errorAction.failure(error)));
 };
 
 // Log user out
@@ -64,6 +54,6 @@ const logoutUser = () => dispatch => {
 export const authAction = {
   registerUser,
   loginUser,
-  setCurrentUser: setUserLogin,
+  setUserLogin,
   logoutUser,
 };
