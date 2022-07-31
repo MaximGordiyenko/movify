@@ -15,7 +15,7 @@ export const Movies = () => {
   
   const { gameOfThronesData, loading } = useSelector(state => state?.setGameOfThrones);
   const { error } = useSelector(state => state?.error);
-
+  
   return (
     <>
       {error ?

@@ -1,8 +1,8 @@
 const express = require('express');
 const axios = require("axios");
 const app = express.Router();
-const binance = require('../config/keys').binance;
-const APIKEY = require('../config/keys').binanceAPIKEY;
+const binance = require('../../config/keys').binance;
+const APIKEY = require('../../config/keys').binanceAPIKEY;
 
 const type = 'klines';
 const symbol = 'BTCUSDT';

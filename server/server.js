@@ -5,7 +5,8 @@ const connectDB = require("./database/DB");
 const passport = require("passport");
 const PORT = require('./config/keys').serverPORT;
 const users = require("./routes/api/users");
-const btc = require('./routes/btcCandle');
+const btc = require('./routes/api/btcCandle');
+const sec = require('./routes/api/sec');
 
 const app = express();
 
@@ -28,7 +29,8 @@ require("./config/passport")(passport);
 // Routes
 // https://medium.com/swlh/node-js-router-and-routes-a4a3cfced5c4
 app.use("/api/users", users);
-app.use('/api/btc', btc)
+app.use('/api/btc', btc);
+app.use('/api/sec', sec);
 
 app.listen(PORT, () => {
   console.log(`Server: ${PORT}`);

@@ -13,7 +13,6 @@ import { Dashboard } from "./dashboard/Dashboard";
 
 export const App = () => {
   const { isAuthenticated } = useSelector(state => state?.auth);
-  
   return (
     <>
       <Navigation/>
@@ -22,11 +21,11 @@ export const App = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/logIn" element={<Login/>}/>
         <Route path="/crypto" element={<Cryptos/>}/>
-        
+
         <Route element={<ProtectedRoute auth={isAuthenticated}/>}>
           <Route path="/dashboard" element={<Dashboard/>}/>
         </Route>
-        
+
         <Route
           path="/notes"
           element={
